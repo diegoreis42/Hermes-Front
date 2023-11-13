@@ -1,10 +1,42 @@
-import React from 'react';
+'use client';
+import React, { FormEvent, useState } from 'react';
 import Nav from '../Components/Nav'
-import Form from "../Components/Contato";
 import Footer from "../Components/Footer";
 import Link from 'next/link';
+import axios from 'axios';
+import TextInput from '../Components/TextInput';
+
+const baseUrl = "http://localhost:3001/auth/login";
 
 export default function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(baseUrl, {
+        email,
+        password
+      });
+
+      if (res.status === 200 && res.data.access_token) {
+
+        setAuthHeader(res.data.access_token);
+      }
+    } catch (err: any) {
+      if (err.response) {
+        console.log(err.response.data)
+      }
+    }
+  }
+
+  const setAuthHeader = (jwtToken: string) => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+  };
+
   return (
     <main className="bg-cinza">
       <section id="nav">
@@ -23,17 +55,30 @@ export default function Login() {
             <div
               className="flex max-w-md flex-col items-center gap-4"
             >
-              <Form formField="E-mail*" type="email" />
-              <Form formField="Senha" type="Senha" />
-              <button className='text-xl flex h-10 w-full items-center justify-center rounded-md border transition-all focus:outline-none border-rosa bg-azul text-preto hover:bg-verde'>Enviar</button>
+              <form onSubmit={handleSubmit}>
+                <TextInput
+                  formField="E-mail*"
+                  type="email"
+                  value={email}
+                  onChange={setEmail}
+                />
+                <TextInput
+                  formField="Senha"
+                  type="password"
+                  value={password}
+                  onChange={setPassword}
+                />
+
+                <button type='submit' className='text-xl flex h-10 w-full items-center justify-center rounded-md border transition-all focus:outline-none border-rosa bg-azul text-preto hover:bg-verde'>Enviar</button>
+              </form>
               <span>Não possui uma conta? <span className=' text-azul hover:text-verde hover:underline'> <Link href="../cadastro">Cadastre-se</Link></span></span>
             </div>
           </div>
         </div>
       </section>
       <footer id="footer" className=" items-center justify-center">
-        <Footer></Footer>
-      </footer> 
+        <Footer />
+      </footer>
     </main>
   );
 }

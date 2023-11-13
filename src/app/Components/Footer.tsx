@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
       <div className="w-full">
-        <img src="./img/Frame.png" alt="" />
+        <img src="./img/footer.png" alt="" />
       </div>
   );
 };

@@ -14,6 +14,7 @@
     "axios": "^1.6.1",
     "link": "^2.1.0",
     "next": "14.0.1",
+    "nookies": "^2.5.2",
     "react": "^18",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18",

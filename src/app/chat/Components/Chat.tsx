@@ -1,5 +1,6 @@
 'use client'
 
+import { parseCookies } from 'nookies';
 import React, { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
@@ -17,7 +18,13 @@ const Chat: React.FC<ChatProps> = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const socketInstance = io('http://localhost:3001/chat');
+    const cookies = parseCookies(null);
+    const socketInstance = io('http://localhost:3001/chat', {
+      extraHeaders: {
+        Authorization: cookies['access_token']
+      }
+    });
+
 
     socketInstance.on('connect', () => {
       console.log('Socket.IO connected');
@@ -49,7 +56,7 @@ const Chat: React.FC<ChatProps> = () => {
       socket.emit('message', newMessage);
 
       if (newMessage.user !== username) {
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        setMessages(messages.concat(newMessage));
       }
 
       setMessageInput('');

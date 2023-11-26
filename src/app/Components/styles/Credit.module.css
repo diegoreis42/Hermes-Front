@@ -1,0 +1,22 @@
+.assinatura{
+    display: flex;
+    margin: 1em; /*margem padrão do <p>*/
+}
+
+.ancora{
+    margin-left: 5px; /*imita o espaçamento entre letras*/
+    color: blue;
+    transition: transform 200ms, color 200ms;
+    text-decoration: none;
+}
+
+.ancora:hover{
+    color: lightblue;
+    transform: translateY(-3px);
+    text-decoration: underline;
+}
+
+.amor{
+    color: red;
+    margin: 0 5px;
+}

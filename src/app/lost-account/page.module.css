@@ -1,0 +1,39 @@
+.outro{
+    align-items: center;
+}
+
+.cadastro, .login{
+    display: flex;
+    align-items: center;
+}
+
+.cadastro{
+    flex-direction: column;
+}
+
+.botao{
+    margin-bottom: 16px;
+}
+
+.ancora{
+    margin-left: 5px;
+    transition: transform 200ms, color 200ms;
+    color: blue;
+}
+
+.ancora:hover{
+    transform: translateY(-3px);
+    color: lightblue;
+}
+
+.erro{
+    color: red;
+}
+
+.sucesso{
+    color: green;
+}
+
+.rec-key{
+    font-weight: bold;
+}

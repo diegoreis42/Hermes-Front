@@ -1,27 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body{
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+main, footer{
+  display: flex;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+header{ /*o header ficará colado ao topo da tela*/
+  position: fixed;
+  min-width: 100vw;
+  top: 0;
+}
+
+header, footer{
+  background-color: black;
+  color: white; /*cor do texto*/
+}
+
+main{
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 52px; /*compensa o header*/
+}
+
+footer{ /*o footer aparecerá somente ao descer a tela*/
+  justify-content: center;
+  margin-top: auto;
 }

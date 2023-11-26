@@ -1,0 +1,44 @@
+/*gambiarra a gente aceita, a gente só não aceita a derrota!*/
+
+.navbar{
+    display: flex;
+    justify-content: center; /*"outro" ficará no centro*/
+    padding: 16px 0;
+}
+
+.home, .login-register{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.login-register{
+    padding-right: 40px;
+    padding-left: 0;
+}
+
+.opcao{
+    margin: 0 10px;
+    transition: transform 200ms;
+}
+
+.opcao:hover{
+    transform: translateY(3px);
+}
+
+.ancora{
+    color: blue;
+    text-decoration: none;
+    transition: color 200ms;
+}
+
+.ancora:hover{
+    color: lightblue;
+    text-decoration: underline;
+}
+
+.outro{
+    padding-left: 76px; /*compensa o link à mais na direita (olhômetro)*/
+    margin: 0 auto;
+}

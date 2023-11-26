@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Components/Nav'
 import Carousel from './Components/Carousel'
-import Form from "./Components/Contato";
+import Form from "./Components/TextInput";
 import Footer from "./Components/Footer";
 
 export default function Home() {

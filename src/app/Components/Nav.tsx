@@ -36,7 +36,7 @@ const Nav = () => {
             <Link href="/">Contato</Link>
           </li>
           <li className='text-preto text-3xl font-lobster px-20 font-bold hover:text-azul hover:underline'>
-            <Link href="/">Login</Link>
+            <Link href="../login">Login</Link>
           </li>
         </ul>
 

@@ -12,13 +12,13 @@ export default function Carrossel() {
       titulo e texto são os textos exibidos no balão a frente da imagem, titulo tem a cor mais forte e tamanho maior;*/}
   const slides = [
     {
-      url: "./img/cat1.jpeg",
+      url: "./img/carrossel.png",
     },
     {
-      url: "./img/dog3.jpeg",
+      url: "./img/carrossel2.jpeg",
     },
     {
-      url: "./img/dog4.jpeg",
+      url: "./img/carrossel3.jpeg",
     },
   ];
 

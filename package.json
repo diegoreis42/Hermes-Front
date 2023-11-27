@@ -11,12 +11,15 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@uidotdev/usehooks": "^2.4.1",
+    "axios": "^1.6.1",
     "link": "^2.1.0",
     "next": "14.0.1",
+    "nookies": "^2.5.2",
     "react": "^18",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@types/node": "^20",

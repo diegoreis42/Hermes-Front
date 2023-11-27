@@ -7,8 +7,8 @@ import Link from 'next/link';
 import TextInput from '@/app/Components/TextInput';
 import axios from 'axios';
 import { parseCookies, setCookie } from 'nookies';
+import { ApiConnection, CookiesAttributes } from '../../../enums';
 
-const baseUrl = 'http://localhost:3001/auth/register'
 
 export default function Cadastro() {
   const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ export default function Cadastro() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(baseUrl, {
+      const res = await axios.post(ApiConnection.PATH_REGISTER, {
         email,
         password,
         name
@@ -41,7 +41,7 @@ export default function Cadastro() {
   }
 
   const setAuthHeader = (jwtToken: string) => {
-    setCookie(null, 'access_token', `Bearer ${jwtToken}`);
+    setCookie(null, CookiesAttributes.ACCESS_TOKEN, `Bearer ${jwtToken}`);
   };
 
   return (

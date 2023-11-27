@@ -3,6 +3,7 @@
 import { parseCookies } from 'nookies';
 import React, { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
+import { ApiConnection } from '../../../../enums';
 
 interface Message {
   user: string;
@@ -19,7 +20,7 @@ const Chat: React.FC<ChatProps> = () => {
 
   useEffect(() => {
     const cookies = parseCookies(null);
-    const socketInstance = io('http://localhost:3001/chat', {
+    const socketInstance = io(ApiConnection.PATH_CHAT, {
       extraHeaders: {
         Authorization: cookies['access_token']
       }

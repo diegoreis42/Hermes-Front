@@ -10,7 +10,7 @@ interface Message {
   content: string;
 }
 
-interface ChatProps {}
+interface ChatProps { }
 
 const Chat: React.FC<ChatProps> = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -33,7 +33,8 @@ const Chat: React.FC<ChatProps> = () => {
     });
 
     socketInstance.on('message', (receivedMessage: Message) => {
-      setMessages(messages.concat(receivedMessage));
+      console.log(receivedMessage)
+      setMessages(messages => [...messages, receivedMessage]);
     });
 
     socketInstance.on('disconnect', () => {
@@ -41,11 +42,11 @@ const Chat: React.FC<ChatProps> = () => {
     });
 
     return () => {
-      if (socket) {
-        socket.disconnect();
+      if (socketInstance.connect()) {
+        socketInstance.disconnect();
       }
     };
-  }, []); 
+  }, []);
 
   const sendMessage = () => {
     if (socket && messageInput.trim() !== '') {
@@ -56,9 +57,7 @@ const Chat: React.FC<ChatProps> = () => {
 
       socket.emit('message', newMessage);
 
-      if (newMessage.user !== username) {
-        setMessages(messages.concat(newMessage));
-      }
+        setMessages(messages => [...messages, newMessage]);
 
       setMessageInput('');
     }

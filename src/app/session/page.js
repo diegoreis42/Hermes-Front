@@ -3,17 +3,18 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import styles from './page.module.css'
+import {parseCookies} from 'nookies'
 
 export default function Session () {
     const [msg, setMsg] = useState('');
     const [validado, setValidado] = useState(false);
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token'); // recupera o token no local storage
+        const cookies = parseCookies(null);
 
         async function validaSessao(data) {            
             try{
-                const response = await axios.post('http://localhost:3001/session', {token: data});
+                const response = await axios.get('http://localhost:3001/session', {headers: {Authorization: data}});
 
                 if(response.status === 200){
                     setValidado(true);
@@ -27,7 +28,7 @@ export default function Session () {
             }
         }
 
-        validaSessao(token);
+        validaSessao(cookies['access_token']);
     }, []);
 
     if(validado){

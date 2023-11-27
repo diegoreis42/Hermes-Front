@@ -6,8 +6,9 @@ import axios, * as others from 'axios'
 import Link from 'next/link'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { useRouter } from 'next/navigation'
+import {useRouter} from 'next/navigation'
 import styles from './page.module.css'
+import {setCookie} from 'nookies'
 
 export default function Login () {
     const schema = yup.object({
@@ -35,13 +36,13 @@ export default function Login () {
             if(response.status === 200){
                 const token = response.data.token; // extrai o token
 
-                sessionStorage.setItem('token', token);
+                setCookie(null, 'access_token', `Bearer ${token}`);
 
                 setMsg(response.data.feedback); // imprime o feedback
 
                 setEsqueceu(false);
             
-                //if(token)router.push('/session');
+                if(token)router.push('/session');
             }
         } catch (error) {
             setMsg(error.response.data);

@@ -1,5 +1,8 @@
+/*https://paletadecores.com/paleta/73c8a9/dee1b6/e1b866/bd5532/373b44/*/
+
 body{
   margin: 0;
+  background-color: #dee1b6;
 }
 
 main, footer{
@@ -13,14 +16,14 @@ header{ /*o header ficará colado ao topo da tela*/
 }
 
 header, footer{
-  background-color: black;
-  color: white; /*cor do texto*/
+  background-color: #73c8a9;
+  color: #373b44; /*cor do texto*/
 }
 
 main{
   flex-direction: column;
   min-height: 100vh;
-  margin-top: 52px; /*compensa o header*/
+  margin-top: 90px; /*compensa o header*/
 }
 
 footer{ /*o footer aparecerá somente ao descer a tela*/

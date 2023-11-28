@@ -36,9 +36,10 @@
 
 .rec-key{
     font-weight: bold;
+    color: red;
 }
 
-@media(max-width: 450px){
+@media(max-width: 390px){
     .outro{
         display: none;
     }

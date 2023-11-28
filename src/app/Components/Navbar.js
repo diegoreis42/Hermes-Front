@@ -10,7 +10,7 @@ export default function Navbar () {
                 </li>
             </ul>
 
-            <div className={styles['outro']}>Login System</div>
+            <img src='./img/logo.png' className={styles['logo']}/>
 
             <ul className={styles['login-register']}>
                 <li className={styles['opcao']}>

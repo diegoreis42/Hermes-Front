@@ -53,7 +53,7 @@ export default function Login () {
     
     return (
         <main className={styles['outro']}>
-            <h2 className={styles['info']}>Entre para acessar os serviços!</h2>
+            <h2 className={styles['info']}>Faça login para acessar o chat!</h2>
 
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['login']}>
                 <label htmlFor='email'>E-mail</label>
@@ -73,12 +73,12 @@ export default function Login () {
 
             <div className={styles['cadastro']}>
                 <p>Não possui conta?</p>
-                <Link href='/register' className={styles['ancora']}>Cadastro</Link>
+                <Link href='/register' className={styles['ancora']}>Cadastre-se</Link>
             </div>
 
             <div className={styles['trocar-senha']} style={{visibility : esqueceu ? 'visible' : 'hidden' }}>
                 <p className={styles['erro']}>Esqueceu sua senha?</p>
-                <Link href='/lost-account' className={styles['ancora']}>Trocar senha</Link>
+                <Link href='/lost-account' className={styles['ancora']}>Troque-a</Link>
             </div >
         </main>
     )

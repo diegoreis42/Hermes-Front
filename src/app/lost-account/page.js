@@ -45,7 +45,7 @@ export default function LostAccount () {
     
     return (
         <main className={styles['outro']}>
-            <h2>Troque sua senha!</h2>
+            <h2 className={styles['info']}>Troque sua senha!</h2>
 
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['cadastro']}>
                 <label htmlFor='email'>E-mail</label>

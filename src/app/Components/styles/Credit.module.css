@@ -5,18 +5,18 @@
 
 .ancora{
     margin-left: 5px; /*imita o espaçamento entre letras*/
-    color: blue;
+    color: #bd5532;
     transition: transform 200ms, color 200ms;
     text-decoration: none;
 }
 
 .ancora:hover{
-    color: lightblue;
+    color: #e1b866;
     transform: translateY(-3px);
     text-decoration: underline;
 }
 
 .amor{
-    color: red;
+    color: #bd5532;
     margin: 0 5px;
 }

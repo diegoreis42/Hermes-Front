@@ -30,7 +30,7 @@
     color: green;
 }
 
-@media(max-width: 380px){
+@media(max-width: 362px){
     .info{
         display: none;
     }

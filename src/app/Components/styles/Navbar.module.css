@@ -21,6 +21,8 @@
 .opcao{
     margin: 0 10px;
     transition: transform 200ms;
+    display: flex;
+    align-items: center;
 }
 
 .opcao:hover{
@@ -28,23 +30,25 @@
 }
 
 .ancora{
-    color: blue;
+    color: #bd5532;
     text-decoration: none;
     transition: color 200ms;
 }
 
 .ancora:hover{
-    color: lightblue;
+    color: #e1b866;
     text-decoration: underline;
 }
 
-.outro{
+.logo{
     margin: 0 auto;
     padding-left: 84px;
+    width: 20%;
+    height: 20%;
 }
 
 @media(max-width: 480px){
-    .outro{
+    .logo{
         display: none;
     }
 }

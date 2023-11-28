@@ -37,3 +37,9 @@
 .rec-key{
     font-weight: bold;
 }
+
+@media(max-width: 450px){
+    .outro{
+        display: none;
+    }
+}

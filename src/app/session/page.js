@@ -33,13 +33,13 @@ export default function Session () {
 
     if(validado){
         return (
-            <main>
+            <main className={styles['feedback']}>
                 <p className={styles['sucesso']}>{msg}</p>
             </main>
         )
     }else{
         return (
-            <main>
+            <main className={styles['feedback']}>
                 <p className={styles['erro']}>{msg}</p>
             </main>
         )

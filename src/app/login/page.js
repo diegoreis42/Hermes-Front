@@ -53,7 +53,7 @@ export default function Login () {
     
     return (
         <main className={styles['outro']}>
-            <h2>Entre para acessar os serviços!</h2>
+            <h2 className={styles['info']}>Entre para acessar os serviços!</h2>
 
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['login']}>
                 <label htmlFor='email'>E-mail</label>

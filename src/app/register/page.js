@@ -48,7 +48,7 @@ export default function Register () {
     
     return (
         <main className={styles['outro']}>
-            <h2>Cadastre-se para acessar os serviços!</h2>
+            <h2 className={styles['info']}>Cadastre-se para acessar os serviços!</h2>
 
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['cadastro']}>
                 <label htmlFor='username'>Apelido</label>

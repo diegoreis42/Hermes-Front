@@ -29,3 +29,9 @@
 .sucesso{
     color: green;
 }
+
+@media(max-width: 380px){
+    .info{
+        display: none;
+    }
+}

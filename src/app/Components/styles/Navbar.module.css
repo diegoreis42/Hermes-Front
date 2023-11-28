@@ -39,6 +39,12 @@
 }
 
 .outro{
-    padding-left: 76px; /*compensa o link à mais na direita (olhômetro)*/
     margin: 0 auto;
+    padding-left: 84px;
+}
+
+@media(max-width: 480px){
+    .outro{
+        display: none;
+    }
 }

@@ -6,28 +6,30 @@ import Footer from "../Components/Footer";
 import Link from 'next/link';
 import TextInput from '@/app/Components/TextInput';
 import axios from 'axios';
+import { parseCookies, setCookie } from 'nookies';
+import { ApiConnection, CookiesAttributes } from '../../../enums';
 
-const baseUrl = 'http://localhost:3001/auth/register'
 
 export default function Cadastro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const cookies = parseCookies(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(baseUrl, {
+      const res = await axios.post(ApiConnection.PATH_REGISTER, {
         email,
         password,
         name
       });
 
-      if (res.status === 200 && res.data.access_token) {
-
+      if (res.status === 201 && res.data.access_token) {
         setAuthHeader(res.data.access_token);
       }
+
     } catch (err: any) {
 
       if (err.response) {
@@ -39,7 +41,7 @@ export default function Cadastro() {
   }
 
   const setAuthHeader = (jwtToken: string) => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+    setCookie(null, CookiesAttributes.ACCESS_TOKEN, `Bearer ${jwtToken}`);
   };
 
   return (

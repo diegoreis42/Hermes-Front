@@ -7,14 +7,14 @@ import { ApiConnection, CookiesAttributes } from '../../../enums';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import useStorage from '../hooks/useStorage';
-
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setItem, getItem } = useStorage();
-
+  const { setItem } = useStorage();
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ export default function Login() {
         const payload = await axios.get(ApiConnection.PATH_ME, { headers: { Authorization: `Bearer ${res.data.access_token}` } })
         setItem('user', JSON.stringify(payload.data))
 
-        redirect('/chat')
+        router.push('/chat')
       }
     } catch (err: any) {
       if (err.response) {

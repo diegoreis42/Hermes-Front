@@ -4,6 +4,7 @@ import { parseCookies } from 'nookies';
 import React, { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { ApiConnection } from '../../../../enums';
+import useStorage from '../../hooks/useStorage';
 
 interface Message {
   user: string;
@@ -12,14 +13,17 @@ interface Message {
 
 interface ChatProps { }
 
-const Chat: React.FC<ChatProps> = () => {
+const Chat: React.FC<ChatProps> =  () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [messageInput, setMessageInput] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [socket, setSocket] = useState<Socket | null>(null);
+  const cookies = parseCookies(null);
+  const { getItem } = useStorage();
+
+  const user = getItem('user');
 
   useEffect(() => {
-    const cookies = parseCookies(null);
     const socketInstance = io(ApiConnection.PATH_CHAT, {
       extraHeaders: {
         Authorization: cookies['access_token']
@@ -33,7 +37,6 @@ const Chat: React.FC<ChatProps> = () => {
     });
 
     socketInstance.on('message', (receivedMessage: Message) => {
-      console.log(receivedMessage)
       setMessages(messages => [...messages, receivedMessage]);
     });
 
@@ -51,7 +54,7 @@ const Chat: React.FC<ChatProps> = () => {
   const sendMessage = () => {
     if (socket && messageInput.trim() !== '') {
       const newMessage: Message = {
-        user: username,
+        user: JSON.parse(user).name,
         content: messageInput,
       };
 
@@ -66,7 +69,7 @@ const Chat: React.FC<ChatProps> = () => {
   return (
     <div>
       <div>
-        <h2>Welcome, {username || 'Guest'}!</h2>
+        <h2>Bem-vind@, {JSON.parse(user).name}, ao Hermes Chat!</h2>
         <input
           type="text"
           placeholder="Enter your username"

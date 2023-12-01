@@ -71,15 +71,15 @@ export default function Login () {
 
             <p className={styles['erro']} style={{visibility : esqueceu ? 'visible' : 'hidden' }}>{msg}</p>
 
-            <div className={styles['cadastro']}>
-                <p>Não possui conta?</p>
-                <Link href='/register' className={styles['ancora']}>Cadastre-se</Link>
-            </div>
-
             <div className={styles['trocar-senha']} style={{visibility : esqueceu ? 'visible' : 'hidden' }}>
                 <p className={styles['erro']}>Esqueceu sua senha?</p>
                 <Link href='/lost-account' className={styles['ancora']}>Troque-a</Link>
             </div >
+
+            <div className={styles['cadastro']}>
+                <p>Não possui conta?</p>
+                <Link href='/register' className={styles['ancora']}>Cadastre-se</Link>
+            </div>
         </main>
     )
 }

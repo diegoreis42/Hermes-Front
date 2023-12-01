@@ -8,6 +8,14 @@
     align-items: center;
 }
 
+.trocar-senha{
+    margin-top: auto;
+}
+
+.cadastro{
+    margin-bottom: 32px;
+}
+
 .botao{
     margin-bottom: 16px;
 }
@@ -33,5 +41,9 @@
 @media(max-width: 362px){
     .info{
         display: none;
+    }
+
+    .login{
+        margin-top: 32px
     }
 }

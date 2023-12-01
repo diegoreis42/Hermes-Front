@@ -2,27 +2,21 @@
 
 .navbar{
     display: flex;
-    justify-content: center; /*"outro" ficará no centro*/
-    padding: 16px 0;
+    justify-content: space-between;
+    height: 64px
 }
 
-.home, .login-register{
+.lista{
+    padding: 0;
     margin: 0;
     display: flex;
     flex-direction: row;
     list-style: none;
 }
 
-.login-register{
-    padding-right: 40px;
-    padding-left: 0;
-}
-
 .opcao{
     margin: 0 10px;
     transition: transform 200ms;
-    display: flex;
-    align-items: center;
 }
 
 .opcao:hover{
@@ -40,14 +34,80 @@
     text-decoration: underline;
 }
 
-.logo{
-    margin: 0 auto;
-    padding-left: 84px;
-    width: 20%;
-    height: 20%;
+.home{
+    height: 64px;
+    width: 250px;
+    padding-left: 32px;
 }
 
-@media(max-width: 480px){
+.logo{
+    height: 64px;
+    width: 250px;
+}
+
+.logo-alt{
+    height: 64px;
+    width: 75px;
+}
+
+.login-register, .login-register-alt{
+    display: flex;
+    align-items: center;
+    padding-right: 32px;
+}
+
+.hamburguer{
+    color: #bd5532;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    transition: color 200ms, transform 200ms;
+}
+
+.hamburguer:hover{
+    transform: scale(1.25);
+    color: #e1b866;
+}
+
+@media(min-width: 720px){
+    .login-register-alt{
+        display: none;
+    }
+
+    .logo-alt{
+        display:none;
+    }
+}
+
+@media(max-width: 720px){
+    .login-register{
+        display: none;
+    }
+
+    .login-register-alt{
+        margin-left: auto;
+    }
+
+    .lista{
+        position: fixed;
+        top: 72px;
+        right: 8px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        gap: 4px;
+        background-color: #73c8a9;
+        border: 1px solid #373b44;
+    }
+
+    .opcao{
+        transition: transform 200ms;
+    }
+    
+    .opcao:hover{
+        transform: translateX(3px);
+    }
+
     .logo{
         display: none;
     }

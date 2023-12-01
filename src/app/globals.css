@@ -7,6 +7,7 @@ body{
 
 main, footer{
   display: flex;
+  color: #373b44;
 }
 
 header{ /*o header ficará colado ao topo da tela*/
@@ -18,15 +19,25 @@ header{ /*o header ficará colado ao topo da tela*/
 header, footer{
   background-color: #73c8a9;
   color: #373b44; /*cor do texto*/
+  z-index: 1;
+  border: 1px solid #373b44;
 }
 
 main{
   flex-direction: column;
   min-height: 100vh;
-  margin-top: 90px; /*compensa o header*/
+  margin-top: 64px; /*compensa o header*/
 }
 
 footer{ /*o footer aparecerá somente ao descer a tela*/
   justify-content: center;
   margin-top: auto;
+}
+
+ul{
+  list-style: none;
+}
+
+input{
+  border-radius: 10px;
 }

@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.login{
+    margin-top: auto;
+}
+
 .cadastro{
     flex-direction: column;
 }
@@ -40,7 +44,10 @@
 }
 
 @media(max-width: 390px){
-    .outro{
+    .info{
         display: none;
+    }
+    .cadastro{
+        margin-top: 32px;
     }
 }

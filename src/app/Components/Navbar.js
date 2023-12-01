@@ -1,26 +1,50 @@
+'use client'
+
 import styles from './styles/Navbar.module.css'
 import Link from 'next/link'
+import {useState} from 'react'
 
 export default function Navbar () {
+    const [menuHamburguer, setMenuHamburguer] = useState(false);
+
+    const handleMenuClick = () => {
+        setMenuHamburguer((prevMenuHamburguer) => !prevMenuHamburguer); // faz o novo valor ser a negação lógica do anterior
+    }
+
     return (
         <nav className={styles['navbar']}>
-            <ul className={styles['home']}>
-                <li className={styles['opcao']}>
-                    <Link href='/' className={styles['ancora']}>Home</Link>
-                </li>
-            </ul>
+            <div className={styles['home']}>
+                <Link href='/'>
+                    <img src='./img/logo.png' className={styles['logo']} />
+                    <img src='./img/logo-alt.png' className={styles['logo-alt']} />
+                </Link>
+            </div>
+            
+            <div className={styles['login-register']}>
+                <ul className={styles['lista']}>
+                    <li className={styles['opcao']}>
+                        <Link href='/login' className={styles['ancora']}>Login</Link>
+                    </li>
 
-            <img src='./img/logo.png' className={styles['logo']}/>
+                    <li className={styles['opcao']}>
+                        <Link href='/register' className={styles['ancora']}>Cadastro</Link>
+                    </li>
+                </ul>
+            </div>
 
-            <ul className={styles['login-register']}>
-                <li className={styles['opcao']}>
-                    <Link href='/login' className={styles['ancora']}>Login</Link>
-                </li>
+            <div className={styles['login-register-alt']}>
+                <ul className={styles['lista']} style={{visibility : menuHamburguer ? 'visible' : 'hidden'}}>
+                    <li className={styles['opcao']}>
+                        <Link href='/login' className={styles['ancora']}>Login</Link>
+                    </li>
 
-                <li className={styles['opcao']}>
-                    <Link href='/register' className={styles['ancora']}>Cadastro</Link>
-                </li>
-            </ul>
+                    <li className={styles['opcao']}>
+                        <Link href='/register' className={styles['ancora']}>Cadastro</Link>
+                    </li>
+                </ul>
+
+                <button onClick={handleMenuClick} className={styles['hamburguer']}>&#9776;</button>
+            </div>
         </nav>
         
     );

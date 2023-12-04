@@ -57,7 +57,7 @@ const Nav = () => {
                 <Link href="/">Meu perfil</Link>
               </li>
               <li className='hover:text-azul hover:underline'>
-                <Link href="../editarPerfil">Editar perfil</Link>
+                <Link href="/">Editar perfil</Link>
               </li>
               <li className='hover:text-azul hover:underline'>
                 <Link href="/">Excluir perfil</Link>

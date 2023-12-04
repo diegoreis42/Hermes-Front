@@ -1,0 +1,50 @@
+.outro{
+    align-items: center;
+}
+
+.cadastro, .login{
+    display: flex;
+    align-items: center;
+}
+
+.login{
+    margin-top: auto;
+    margin-bottom: 32px;
+}
+
+.cadastro{
+    flex-direction: column;
+}
+
+.botao{
+    margin-bottom: 16px;
+}
+
+.ancora{
+    margin-left: 5px;
+    transition: transform 200ms, color 200ms;
+    color: blue;
+}
+
+.ancora:hover{
+    transform: translateY(-3px);
+    color: lightblue;
+}
+
+.erro{
+    color: red;
+}
+
+.sucesso{
+    color: green;
+}
+
+.rec-key{
+    font-weight: bold;
+}
+
+@media(max-width: 216px){
+    .info{
+        display: none;
+    }
+}

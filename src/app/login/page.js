@@ -42,7 +42,9 @@ export default function Login () {
 
                 setEsqueceu(false);
             
-                if(token)router.push('/session');
+                if(token){
+                    router.push('/session');
+                }
             }
         } catch (error) {
             setMsg(error.response.data);

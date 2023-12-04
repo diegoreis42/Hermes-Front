@@ -1,13 +1,15 @@
-/*https://paletadecores.com/paleta/73c8a9/dee1b6/e1b866/bd5532/373b44/*/
+/*https://paletadecores.com/paleta/44749d/c6d4e1/ffffff/ebe7e0/bdb8ad/*/
+
+/*https://paletadecores.com/paleta/48586f/ffffc0/d6c496/d62e2e/283d3e/*/
 
 body{
   margin: 0;
-  background-color: #dee1b6;
+  background-color: white;
 }
 
 main, footer{
   display: flex;
-  color: #373b44;
+  color: black;
 }
 
 header{ /*o header ficará colado ao topo da tela*/
@@ -17,10 +19,9 @@ header{ /*o header ficará colado ao topo da tela*/
 }
 
 header, footer{
-  background-color: #73c8a9;
-  color: #373b44; /*cor do texto*/
+  background-color: #c6d4e1;
+  color: #44749d; /*cor do texto*/
   z-index: 1;
-  border: 1px solid #373b44;
 }
 
 main{

@@ -24,13 +24,13 @@
 }
 
 .ancora{
-    color: #bd5532;
+    color: #0A065C;
     text-decoration: none;
     transition: color 200ms;
 }
 
 .ancora:hover{
-    color: #e1b866;
+    color: #48586f;
     text-decoration: underline;
 }
 
@@ -57,15 +57,15 @@
 }
 
 .hamburguer{
-    color: #bd5532;
+    scale: 2;
+    color: #0A065C;
     background: rgba(0, 0, 0, 0);
     border: none;
     transition: color 200ms, transform 200ms;
 }
 
 .hamburguer:hover{
-    transform: scale(1.25);
-    color: #e1b866;
+    color: #48586f;
 }
 
 @media(min-width: 720px){
@@ -96,8 +96,8 @@
         flex-direction: column;
         justify-content: left;
         gap: 4px;
-        background-color: #73c8a9;
-        border: 1px solid #373b44;
+        background-color: #9dd3df;
+        border: 1px solid black;
     }
 
     .opcao{

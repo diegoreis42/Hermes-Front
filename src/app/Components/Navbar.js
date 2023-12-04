@@ -15,8 +15,8 @@ export default function Navbar () {
         <nav className={styles['navbar']}>
             <div className={styles['home']}>
                 <Link href='/'>
-                    <img src='./img/logo.png' className={styles['logo']} />
-                    <img src='./img/logo-alt.png' className={styles['logo-alt']} />
+                    <img src='./img/logo.png' className={styles['logo']} alt='' />
+                    <img src='./img/logo-alt.png' className={styles['logo-alt']} alt='' />
                 </Link>
             </div>
             

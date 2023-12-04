@@ -6,15 +6,15 @@ import Footer from "../Components/Footer";
 import Link from 'next/link';
 import TextInput from '@/app/Components/TextInput';
 import axios from 'axios';
-import { parseCookies, setCookie } from 'nookies';
-import { ApiConnection, CookiesAttributes } from '../../../enums';
+import { ApiConnection } from '../../../enums';
+import { useRouter } from 'next/navigation';
 
 
 export default function Cadastro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const cookies = parseCookies(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function Cadastro() {
       });
 
       if (res.status === 201 && res.data.access_token) {
-        setAuthHeader(res.data.access_token);
+        router.push('/login');
       }
 
     } catch (err: any) {
@@ -39,10 +39,6 @@ export default function Cadastro() {
     }
 
   }
-
-  const setAuthHeader = (jwtToken: string) => {
-    setCookie(null, CookiesAttributes.ACCESS_TOKEN, `Bearer ${jwtToken}`);
-  };
 
   return (
     <main className="bg-cinza">

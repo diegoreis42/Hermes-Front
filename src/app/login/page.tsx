@@ -1,18 +1,20 @@
 'use client';
-import React, { FormEvent, useState } from 'react';
-import Nav from '../Components/Nav'
-import Footer from "../Components/Footer";
-import Link from 'next/link';
+import { FormEvent, useState } from 'react';
 import axios from 'axios';
 import TextInput from '../Components/TextInput';
 import { setCookie } from 'nookies';
 import { ApiConnection, CookiesAttributes } from '../../../enums';
-
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import useStorage from '../hooks/useStorage';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setItem } = useStorage();
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -24,8 +26,12 @@ export default function Login() {
       });
 
       if (res.status === 200 && res.data.access_token) {
-        setAuthHeader(res.data.access_token);
-        // redireciona para localhost:3000/chat
+        setCookie(null, CookiesAttributes.ACCESS_TOKEN, `Bearer ${res.data.access_token}`);
+
+        const payload = await axios.get(ApiConnection.PATH_ME, { headers: { Authorization: `Bearer ${res.data.access_token}` } })
+        setItem('user', JSON.stringify(payload.data))
+
+        router.push('/chat')
       }
     } catch (err: any) {
       if (err.response) {
@@ -34,16 +40,8 @@ export default function Login() {
     }
   }
 
-  const setAuthHeader = (jwtToken: string) => {
-    setCookie(null, CookiesAttributes.ACCESS_TOKEN, `Bearer ${jwtToken}`);
-  };
-
   return (
     <main className="bg-cinza">
-      <section id="nav">
-        <Nav />
-      </section>
-
       <section id="login" className="flex items-center justify-center">
         <div
           id="contato-div"
@@ -77,9 +75,6 @@ export default function Login() {
           </div>
         </div>
       </section>
-      <footer id="footer" className=" items-center justify-center">
-        <Footer />
-      </footer>
     </main>
   );
 }

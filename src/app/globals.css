@@ -2,6 +2,10 @@
 
 /*https://paletadecores.com/paleta/48586f/ffffc0/d6c496/d62e2e/283d3e/*/
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body{
   margin: 0;
   background-color: white;

@@ -1,114 +1,162 @@
-/*gambiarra a gente aceita, a gente só não aceita a derrota!*/
+/* Gambiarra a gente aceita, a gente só não aceita a derrota! */
 
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
-    height: 64px
+    align-items: center;
+    height: 64px;
+    padding: 0 32px;
+    background-color: #9dd3df;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.lista{
+.lista {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: row;
     list-style: none;
 }
 
-.opcao{
+.opcao {
     margin: 0 10px;
     transition: transform 200ms;
 }
 
-.opcao:hover{
-    transform: translateY(3px);
+.opcao:hover {
+    transform: translateY(-3px);
 }
 
-.ancora{
-    color: #0A065C;
+.ancora {
+    color: #0a065c;
     text-decoration: none;
     transition: color 200ms;
 }
 
-.ancora:hover{
+.ancora:hover {
     color: #48586f;
     text-decoration: underline;
 }
 
-.home{
+.home {
     height: 64px;
     width: 250px;
-    padding-left: 32px;
-}
-
-.logo{
-    height: 64px;
-    width: 250px;
-}
-
-.logo-alt{
-    height: 64px;
-    width: 75px;
-}
-
-.login-register, .login-register-alt{
     display: flex;
     align-items: center;
-    padding-right: 32px;
 }
 
-.hamburguer{
-    scale: 2;
-    color: #0A065C;
-    background: rgba(0, 0, 0, 0);
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.logo-alt {
+    height: 40px;
+    width: auto;
+    display: none;
+}
+
+.login-register,
+.login-register-alt {
+    display: flex;
+    align-items: center;
+}
+
+.hamburguer {
+    font-size: 24px;
+    color: #0a065c;
+    background: transparent;
     border: none;
+    cursor: pointer;
     transition: color 200ms, transform 200ms;
 }
 
-.hamburguer:hover{
+.hamburguer:hover {
     color: #48586f;
+    transform: scale(1.1);
 }
 
-@media(min-width: 720px){
-    .login-register-alt{
+
+@media (min-width: 720px) {
+    .login-register-alt {
         display: none;
     }
 
-    .logo-alt{
-        display:none;
+    .logo {
+        display: block;
     }
 }
 
-@media(max-width: 720px){
-    .login-register{
+@media (max-width: 720px) {
+    .login-register {
         display: none;
     }
 
-    .login-register-alt{
+    .login-register-alt {
         margin-left: auto;
     }
 
-    .lista{
+    .lista {
         position: fixed;
+        z-index: 50;
         top: 72px;
         right: 8px;
         z-index: 2;
         display: flex;
         flex-direction: column;
-        justify-content: left;
         gap: 4px;
         background-color: #9dd3df;
         border: 1px solid black;
+        padding: 8px;
+        border-radius: 4px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .opcao{
+    .opcao {
         transition: transform 200ms;
     }
-    
-    .opcao:hover{
+
+    .opcao:hover {
         transform: translateX(3px);
     }
 
-    .logo{
+    .logo-alt {
+        display: block;
+    }
+
+    .logo {
         display: none;
+    }
+    .menuAberto {
+        transition: width 400ms ease-in-out;
+        width: 0;
+        padding: 0;
+    }
+    
+    .menuAbertoItem {
+        transition: ease-in-out;
+    }
+    
+    .menuAbertoItem:hover {
+        background-color: #e5e5e5;
+        color: #007bff;
+    }
+
+    .hamburguer {
+        font-size: 24px;
+        color: #0a065c;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: color 200ms, transform 200ms;
+        /* Adicione espaçamento e realce ao botão */
+        padding: 8px;
+    }
+    
+    .hamburguer:hover {
+        color: #48586f;
+        transform: scale(1.1);
+        /* Efeito sutil ao passar o mouse */
+        background-color: #f0f0f0;
+        border-radius: 50%;
     }
 }

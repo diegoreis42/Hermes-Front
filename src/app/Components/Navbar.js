@@ -8,7 +8,7 @@ export default function Navbar () {
     const [menuHamburguer, setMenuHamburguer] = useState(false);
 
     const handleMenuClick = () => {
-        setMenuHamburguer((prevMenuHamburguer) => !prevMenuHamburguer); // faz o novo valor ser a negação lógica do anterior
+        setMenuHamburguer((prevMenuHamburguer) => !prevMenuHamburguer); 
     }
 
     return (

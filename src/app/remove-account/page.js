@@ -45,7 +45,7 @@ export default function LostAccount () {
         <main className={styles['outro']}>
             <h2 className={styles['info']}>Apague sua conta!</h2>
 
-            <form onSubmit={handleSubmit(submit)} noValidate className={styles['cadastro']}>
+            <form onSubmit={handleSubmit(submit)} noValidate className={styles['remover-conta']}>
                 <label htmlFor='email'>E-mail</label>
                 <input type='text' id='email' {...register('email')} />
                 <p className={styles['erro']}>{errors.email?.message}</p>
@@ -57,9 +57,9 @@ export default function LostAccount () {
                 <button className={styles['botao']}>Excluir conta</button>
             </form>
 
-            <p className={styles['sucesso']} style={{visibility : ok ? 'visible' : 'hidden' }}>{msg}</p>
+            <p className={styles['sucesso']} style={{display : ok ? '' : 'none' }}>{msg}</p>
 
-            <p className={styles['erro']} style={{visibility : ok ? 'hidden' : 'visible' }}>{msg}</p>
+            <p className={styles['erro']} style={{display : ok ? 'none' : '' }}>{msg}</p>
         </main>
     )
 }

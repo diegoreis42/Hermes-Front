@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.login{
+    margin: auto 0;
+}
+
 .trocar-senha{
     margin-top: auto;
 }

@@ -1,0 +1,16 @@
+.erro{
+    color: red;
+}
+
+.sucesso{
+    color: green;
+}
+
+.feedback{
+    align-items: center;
+}
+
+.menu{
+    display: flex;
+    margin: auto;
+}

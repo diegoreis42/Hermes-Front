@@ -43,7 +43,7 @@ export default function Login () {
                 setEsqueceu(false);
             
                 if(token){
-                    router.push('/session');
+                    router.push('/chat');
                 }
             }
         } catch (error) {
@@ -69,11 +69,11 @@ export default function Login () {
                 <button className={styles['botao']}>Entrar</button>
             </form>
 
-            <p className={styles['sucesso']} style={{visibility : esqueceu ? 'hidden' : 'visible' }}>{msg}</p>
+            <p className={styles['sucesso']} style={{display : esqueceu ? 'none' : '' }}>{msg}</p>
 
-            <p className={styles['erro']} style={{visibility : esqueceu ? 'visible' : 'hidden' }}>{msg}</p>
+            <p className={styles['erro']} style={{display : esqueceu ? '' : 'none' }}>{msg}</p>
 
-            <div className={styles['trocar-senha']} style={{visibility : esqueceu ? 'visible' : 'hidden' }}>
+            <div className={styles['trocar-senha']} style={{display : esqueceu ? '' : 'none' }}>
                 <p className={styles['erro']}>Esqueceu sua senha?</p>
                 <Link href='/lost-account' className={styles['ancora']}>Troque-a</Link>
             </div >

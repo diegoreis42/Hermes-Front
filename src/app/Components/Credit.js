@@ -4,9 +4,9 @@ export default function Credit () {
     return (
         <div className={styles['assinatura']}>
             Feito com <p className={styles['amor']}>&hearts;</p> por
-            <a href='https://github.com/diegoreis42' className={styles['ancora']}>Diego</a>,
+            <a className={styles['ancora']}>Diego</a>,
             <a href='https://github.com/Yumiowari' className={styles['ancora']}>Rafael</a>,
-            <a href='https://github.com/Tamiris73' className={styles['ancora']}>Tamiris</a>!
+            <a className={styles['ancora']}>Tamiris</a>!
         </div>
     )
 }

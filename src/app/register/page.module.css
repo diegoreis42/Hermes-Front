@@ -5,6 +5,7 @@
 .cadastro, .login{
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .login{
@@ -12,7 +13,7 @@
 }
 
 .cadastro{
-    flex-direction: column;
+    margin: auto 0;
 }
 
 .botao{

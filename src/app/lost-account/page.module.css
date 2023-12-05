@@ -2,9 +2,10 @@
     align-items: center;
 }
 
-.cadastro, .login{
+.trocar-senha, .login{
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .login{
@@ -12,8 +13,8 @@
     margin-bottom: 32px;
 }
 
-.cadastro{
-    flex-direction: column;
+.trocar-senha{
+    margin: auto 0;
 }
 
 .botao{

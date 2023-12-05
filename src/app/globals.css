@@ -1,6 +1,5 @@
 /*https://paletadecores.com/paleta/44749d/c6d4e1/ffffff/ebe7e0/bdb8ad/*/
 
-<<<<<<< HEAD
 /*https://paletadecores.com/paleta/48586f/ffffc0/d6c496/d62e2e/283d3e/*/
 
 body{
@@ -47,5 +46,12 @@ input{
 button{
   border-radius: 10px;
 }
-=======
->>>>>>> origin/develop
+
+input{
+  transition: background-color 200ms;
+  background-color: #c6d4e1;
+}
+
+input:hover{
+  background-color: #44749d;
+}

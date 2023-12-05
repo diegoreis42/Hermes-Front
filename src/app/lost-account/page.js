@@ -47,7 +47,7 @@ export default function LostAccount () {
         <main className={styles['outro']}>
             <h2 className={styles['info']}>Troque sua senha!</h2>
 
-            <form onSubmit={handleSubmit(submit)} noValidate className={styles['cadastro']}>
+            <form onSubmit={handleSubmit(submit)} noValidate className={styles['trocar-senha']}>
                 <label htmlFor='email'>E-mail</label>
                 <input type='text' id='email' {...register('email')} />
                 <p className={styles['erro']}>{errors.email?.message}</p>
@@ -67,11 +67,11 @@ export default function LostAccount () {
                 <button className={styles['botao']}>Cadastrar</button>
             </form>
 
-            <p className={styles['sucesso']} style={{visibility : ok ? 'visible' : 'hidden' }}>{msg}</p>
+            <p className={styles['sucesso']} style={{display : ok ? '' : 'none' }}>{msg}</p>
 
-            <p className={styles['erro']} style={{visibility : ok ? 'hidden' : 'visible' }}>{msg}</p>
+            <p className={styles['erro']} style={{display : ok ? 'none' : '' }}>{msg}</p>
 
-            <div className={styles['login']} style={{visibility : ok ? 'visible' : 'hidden' }}>
+            <div className={styles['login']} style={{display : ok ? '' : 'none' }}>
                 <p>Faça</p>
                 <Link href='/login' className={styles['ancora']}>Login</Link>
             </div>

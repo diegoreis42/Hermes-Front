@@ -2,18 +2,16 @@
     align-items: center;
 }
 
-.cadastro, .login{
+.remover-conta{
     display: flex;
     align-items: center;
+    flex-direction: column;
+    margin: auto 0;
 }
 
 .login{
     margin-top: auto;
     margin-bottom: 32px;
-}
-
-.cadastro{
-    flex-direction: column;
 }
 
 .botao{

@@ -86,6 +86,13 @@ export default function Home() {
               <p className="text-gray-600">Encontre pessoas com interesses similares.</p>
             </div>
           </div>
+          <div className="bg-white rounded-lg p-4 flex items-center justify-center shadow-md">
+            <IoRocketOutline className="text-4xl text-blue-500 mr-4" />
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Inovação</h3>
+              <p className="text-gray-600">Estamos sempre buscando novas soluções e tecnologias.</p>
+            </div>
+            </div>
           </div>
       </section>
     </main>

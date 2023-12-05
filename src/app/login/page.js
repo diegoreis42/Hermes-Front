@@ -55,9 +55,9 @@ export default function Login () {
     
     return (
         <main className={styles['outro']}>
-            <h2 className={styles['info']}>Faça login para acessar o chat!</h2>
-
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['login']}>
+                <h2 className={styles['info']}>Faça login para acessar o chat!</h2>
+
                 <label htmlFor='email'>E-mail</label>
                 <input type='text' id='email' {...register('email')} />
                 <p className={styles['erro']}>{errors.email?.message}</p>

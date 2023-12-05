@@ -11,13 +11,11 @@ import styles from './page.module.css'
 export default function LostAccount () {
     const schema = yup.object({
         email: yup.string().email('O e-mail é inválido.').required('Um e-mail precisa ser informado.'),
-        recKey: yup.string().required('A recovery key precisa ser informada.'),
-        password: yup.string().min(4, 'A senha é insegura.').required('Uma senha precisa ser informada.'),
-        confirmPassword: yup.string().required('Confirme sua senha!').oneOf([yup.ref('password')], 'As senhas não coincidem!')
+        password: yup.string().min(4, 'A senha é insegura.').required('Uma senha precisa ser informada.')
     });
 
     const [msg, setMsg] = useState('');
-    const [ok, setOk] = useState(false); // booleano para exibir o "fazer login?"
+    const [ok, setOk] = useState(false);
 
     const form = useForm({
         resolver: yupResolver(schema)
@@ -29,12 +27,12 @@ export default function LostAccount () {
 
     const submit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3001/lost-account', data);
+            const response = await axios.post('http://localhost:3001/remove-account', data);
 
             if(response.status === 200){
                 setMsg(response.data);
                 
-                setOk(true); // a fim de apresentar o convite para login
+                setOk(true);
             }
         } catch (error) {
             setMsg(error.response.data);
@@ -45,36 +43,23 @@ export default function LostAccount () {
     
     return (
         <main className={styles['outro']}>
-            <h2 className={styles['info']}>Troque sua senha!</h2>
+            <form onSubmit={handleSubmit(submit)} noValidate className={styles['remover-conta']}>
+                <h2 className={styles['info']}>Apague sua conta!</h2>
 
-            <form onSubmit={handleSubmit(submit)} noValidate className={styles['trocar-senha']}>
                 <label htmlFor='email'>E-mail</label>
                 <input type='text' id='email' {...register('email')} />
                 <p className={styles['erro']}>{errors.email?.message}</p>
 
-                <label htmlFor='recKey'>Recovery Key</label>
-                <input type='text' id='recKey' {...register('recKey')} />
-                <p className={styles['erro']}>{errors.recKey?.message}</p>
-
-                <label htmlFor='password'>Nova senha</label>
+                <label htmlFor='password'>Senha</label>
                 <input type='password' id='password' {...register('password')} />
                 <p className={styles['erro']}>{errors.password?.message}</p>
 
-                <label htmlFor='confirmPassword'>Confirme a nova senha</label>
-                <input type='password' id='confirmPassword' {...register('confirmPassword')} />
-                <p className={styles['erro']}>{errors.confirmPassword?.message}</p>
-
-                <button className={styles['botao']}>Cadastrar</button>
+                <button className={styles['botao']}>Enviar</button>
             </form>
 
             <p className={styles['sucesso']} style={{display : ok ? '' : 'none' }}>{msg}</p>
 
             <p className={styles['erro']} style={{display : ok ? 'none' : '' }}>{msg}</p>
-
-            <div className={styles['login']} style={{display : ok ? '' : 'none' }}>
-                <p>Faça</p>
-                <Link href='/login' className={styles['ancora']}>Login</Link>
-            </div>
         </main>
     )
 }

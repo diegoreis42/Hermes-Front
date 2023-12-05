@@ -9,15 +9,16 @@
 }
 
 .login{
-    margin: auto 0;
-}
-
-.trocar-senha{
+    margin: 0;
     margin-top: auto;
 }
 
+.trocar-senha{
+    margin-bottom: auto;
+}
+
 .cadastro{
-    margin-bottom: 32px;
+    margin-bottom: auto;
 }
 
 .botao{
@@ -27,9 +28,11 @@
 .ancora{
     transition: transform 200ms, color 200ms;
     color: blue;
+    text-decoration: none;
 }
 
 .ancora:hover{
+    text-decoration: underline;
     transform: translateY(-3px);
     color: lightblue;
 }

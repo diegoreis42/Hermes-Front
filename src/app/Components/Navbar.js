@@ -29,6 +29,10 @@ export default function Navbar() {
                     <li className={styles['opcao']}>
                         <Link href='/register' className={styles['ancora']}>Cadastro</Link>
                     </li>
+
+                    <li className={styles['opcao']}>
+                        <Link href='/perfil' className={styles['ancora']}>Perfil</Link>
+                    </li>
                 </ul>
             </div>
 

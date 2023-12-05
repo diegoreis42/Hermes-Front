@@ -48,9 +48,9 @@ export default function Register () {
     
     return (
         <main className={styles['outro']}>
-            <h2 className={styles['info']}>Cadastre-se para acessar o chat!</h2>
-
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['cadastro']}>
+                <h2 className={styles['info']}>Cadastre-se para acessar o chat!</h2>
+
                 <label htmlFor='username'>Apelido</label>
                 <input type='text' id='username' {...register('username')} />
                 <p className={styles['erro']}>{errors.username?.message}</p>
@@ -67,6 +67,11 @@ export default function Register () {
                 <input type='password' id='confirmPassword' {...register('confirmPassword')} />
                 <p className={styles['erro']}>{errors.confirmPassword?.message}</p>
 
+                <div style={{display : ok ? '' : 'none' }}>
+                    <p>Faça</p>
+                    <Link href='/login' className={styles['ancora']}>Login</Link>
+                </div>
+
                 <button className={styles['botao']}>Cadastrar</button>
             </form>
 
@@ -75,11 +80,6 @@ export default function Register () {
             <p className={styles['erro']} style={{display : ok ? 'none' : '' }}>{msg}</p>
 
             <p className={styles['rec-key']} style={{display : ok ? '' : 'none' }}>Guarde sua Recovery Key: {recKey}</p>
-
-            <div className={styles['login']} style={{display : ok ? '' : 'none' }}>
-                <p>Faça</p>
-                <Link href='/login' className={styles['ancora']}>Login</Link>
-            </div>
         </main>
     )
 }

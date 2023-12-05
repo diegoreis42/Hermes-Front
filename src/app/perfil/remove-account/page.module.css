@@ -2,18 +2,10 @@
     align-items: center;
 }
 
-.trocar-senha, .login{
+.remover-conta{
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-
-.login{
-    margin-top: auto;
-    margin-bottom: 32px;
-}
-
-.trocar-senha{
     margin: auto 0;
 }
 

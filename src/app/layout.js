@@ -6,8 +6,8 @@ import Credit from './Components/Credit'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Login',
-  description: 'Basic login system',
+  title: 'Hermes-Chat',
+  description: 'Fastest Chat in Mitology',
 }
 
 export default function RootLayout({ children }) {

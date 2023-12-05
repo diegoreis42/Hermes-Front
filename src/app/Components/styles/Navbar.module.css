@@ -17,13 +17,13 @@
     list-style: none;
 }
 
-.opcao {
+.opcao{
     margin: 0 10px;
     transition: transform 200ms;
 }
 
 .opcao:hover {
-    transform: translateY(-3px);
+    transform: translateY(3px);
 }
 
 .ancora {

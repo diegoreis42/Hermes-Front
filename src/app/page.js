@@ -9,7 +9,6 @@ import {
   IoRocketOutline,
 } from "react-icons/io5";
 import Carrossel from "./Components/Carrossel"
-import styles from './page.module.css'
 
 export default function Home() {
   return (

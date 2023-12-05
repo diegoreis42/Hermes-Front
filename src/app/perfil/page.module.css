@@ -12,5 +12,17 @@
 
 .menu{
     display: flex;
+    flex-direction: column;
+    gap: 16px;
     margin: auto;
+}
+
+.opcao{
+    padding: 16px;
+    background-color: #c6d4e1;
+    transition: background-color 200ms;
+}
+
+.opcao:hover{
+    background-color: #44749d;
 }

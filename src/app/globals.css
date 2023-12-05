@@ -43,12 +43,25 @@ ul{
   list-style: none;
 }
 
+label{
+  margin-top: 16px;
+}
+
 input{
+  margin-bottom: 16px;
   border-radius: 10px;
 }
 
 button{
+  transition: background-color 200ms;
   border-radius: 10px;
+  background-color: #283d3e;
+  padding: 4px 8px;
+  margin-top: 16px;
+}
+
+button:hover{
+  background-color: #48586f;
 }
 
 input{

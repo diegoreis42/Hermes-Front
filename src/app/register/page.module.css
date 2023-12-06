@@ -38,6 +38,7 @@
 .rec-key{
     font-weight: bold;
     color: red;
+    margin-bottom: 16rem;
 }
 
 @media(max-width: 390px){

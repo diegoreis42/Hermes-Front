@@ -55,7 +55,7 @@ export default function Login () {
                 }
             }
         } catch (error) {
-            setMsg(error.response.data);
+            setMsg(error.response.data.message);
 
             setEsqueceu(true);
         }
@@ -80,11 +80,6 @@ export default function Login () {
             <p className={styles['sucesso']} style={{display : esqueceu ? 'none' : '' }}>{msg}</p>
 
             <p className={styles['erro']} style={{display : esqueceu ? '' : 'none' }}>{msg}</p>
-
-            <div className={styles['trocar-senha']} style={{display : esqueceu ? '' : 'none' }}>
-                <p className={styles['erro']}>Esqueceu sua senha?</p>
-                <Link href='/lost-account' className={styles['ancora']}>Troque-a</Link>
-            </div >
 
             <div className={styles['cadastro']}>
                 <p>Não possui conta?</p>

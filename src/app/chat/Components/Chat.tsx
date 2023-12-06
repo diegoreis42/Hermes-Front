@@ -8,6 +8,7 @@ import useStorage from '../../hooks/useStorage';
 interface Message {
   user: string;
   content: string;
+  userId: string;
 }
 
 interface ChatProps { }
@@ -52,6 +53,7 @@ const Chat: React.FC<ChatProps> = () => {
     if (socket && messageInput.trim() !== '') {
       const newMessage: Message = {
         user: JSON.parse(user).name,
+        userId: JSON.parse(user).id,
         content: messageInput
       };
 
@@ -72,16 +74,16 @@ const Chat: React.FC<ChatProps> = () => {
         <div className="flex-1 p-4 overflow-y-auto">
           <div className="flex flex-col mb-2 space-y-2">
             {messages.map((msg, index) => (
-              <div className={msg.user === JSON.parse(user).name ? "flex flex-row-reverse" : "flex flex-row"}>
-                <div key={index} className={msg.user === JSON.parse(user).name ? "flex-row-reverse bg-green-300 text-black p-2 rounded-lg max-w-xs justify-end items-start" : "bg-blue-300 text-black p-2 rounded-lg max-w-xs flex justify-start items-start"}>
+              <div className={msg.userId === JSON.parse(user).id ? "flex flex-row-reverse" : "flex flex-row"}>
+                <div key={index} className={msg.userId === JSON.parse(user).id ? "flex-row-reverse bg-green-300 text-black p-2 rounded-lg max-w-xs justify-end items-start" : "bg-blue-300 text-black p-2 rounded-lg max-w-xs flex justify-start items-start"}>
                   <strong>{msg.user}:</strong> {msg.content}
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="p-4 border-t">
-          <div className="flex items-center space-x-2">
+        <div className="p-2 border-t">
+          <div className="flex items-start space-x-2">
             <input
               className="flex-1 border border-gray-300 p-2 rounded-l"
               type="text"
@@ -90,7 +92,7 @@ const Chat: React.FC<ChatProps> = () => {
               placeholder="Digite sua mensagem..."
             />
             <button
-              className="bg-green-400 text-white px-4 py-2 rounded-r"
+              className="bg-green-400 text-white px-4 py-2 mt-0 rounded-r"
               onClick={sendMessage}
             >
               Send

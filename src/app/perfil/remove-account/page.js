@@ -12,8 +12,7 @@ import { useRouter } from 'next/navigation'
 
 export default function LostAccount () {
     const schema = yup.object({
-        email: yup.string().email('O e-mail é inválido.').required('Um e-mail precisa ser informado.'),
-        password: yup.string().min(4, 'A senha é insegura.').required('Uma senha precisa ser informada.')
+        password: yup.string().min(4, 'Essa não é a tua senha, amigue').required('Uma senha precisa ser informada.')
     });
 
     const { getItem } = useStorage();

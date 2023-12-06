@@ -37,7 +37,9 @@ export default function LostAccount () {
                 setOk(true); 
             }
         } catch (error) {
-            setMsg(error.response.data);
+            console.log(error)
+            return
+            setMsg(error.response.data.message);
 
             setOk(false);
         }

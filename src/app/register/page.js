@@ -2,11 +2,13 @@
 
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import axios, * as others from 'axios'
+import axios from 'axios'
 import Link from 'next/link'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import styles from './page.module.css'
+import { ApiConnection } from '../../../enums'
+import { useRouter } from 'next/navigation'
 
 export default function Register () {
     const schema = yup.object({
@@ -17,12 +19,14 @@ export default function Register () {
     });
 
     const [msg, setMsg] = useState('');
-    const [ok, setOk] = useState(false); // booleano para exibir o "fazer login?"
+    const [ok, setOk] = useState(false); 
     const [recKey, setRecKey] = useState('');
 
     const form = useForm({
         resolver: yupResolver(schema)
     });
+
+    const router = useRouter();
 
     const {register, handleSubmit, formState} = form;
 
@@ -30,17 +34,17 @@ export default function Register () {
 
     const submit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3001/register', data);
+            console.log(data)
+            const response = await axios.post(ApiConnection.PATH_REGISTER, {name: data.username, email: data.email, password: data.password});
 
-            if(response.status === 200){
-                setMsg(response.data.feedback);
+            if(response.status === 201){
 
-                setRecKey(response.data.recKey);
+                setRecKey(response.data.recoveryKey);
 
-                setOk(true); // a fim de apresentar o convite para login
+                setOk(true);
             }
         } catch (error) {
-            setMsg(error.response.data); // quando há erro, retorna somente string
+            setMsg(error.response.data.message); 
         
             setOk(false);
         }
@@ -48,10 +52,10 @@ export default function Register () {
     
     return (
         <main className={styles['outro']}>
-            <form onSubmit={handleSubmit(submit)} noValidate className={styles['cadastro']}>
+            <form onSubmit={handleSubmit(submit)} noValidate method='POST' className={styles['cadastro']}>
                 <h2 className={styles['info']}>Cadastre-se para acessar o chat!</h2>
 
-                <label htmlFor='username'>Apelido</label>
+                <label htmlFor='username'>Nome</label>
                 <input type='text' id='username' {...register('username')} />
                 <p className={styles['erro']}>{errors.username?.message}</p>
 

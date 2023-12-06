@@ -1,23 +1,28 @@
 'use client'
 
-import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import axios, * as others from 'axios'
+import axios from 'axios'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import styles from './page.module.css'
+import { ApiConnection } from '../../../../enums'
+import useStorage from '../../hooks/useStorage';
+import { useRouter } from 'next/navigation'
 
 export default function LostAccount () {
     const schema = yup.object({
-        nickname: yup.string().required('O apelido precisa ser informado.'),
+        name: yup.string().required('O nome precisa ser informado.'),
     });
 
-    const [msg, setMsg] = useState('');
-    const [ok, setOk] = useState(false);
+    const { getItem, setItem } = useStorage();
+    const router = useRouter();
+
+    const user = getItem('user');
 
     const form = useForm({
         resolver: yupResolver(schema)
     });
+
 
     const {register, handleSubmit, formState} = form;
 
@@ -25,35 +30,30 @@ export default function LostAccount () {
 
     const submit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3001/change-nick', data);
+            const response = await axios.patch(ApiConnection.PATH_USER + `/${JSON.parse(user).id}`, {name: data.name});
 
             if(response.status === 200){
-                setMsg(response.data);
                 
+                router.push('/login');
                 setOk(true);
             }
         } catch (error) {
-            setMsg(error.response.data);
-
-            setOk(false);
+            console.log(error)
         }
     }
     
     return (
         <main className={styles['outro']}>
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['remover-conta']}>
-                <h2 className={styles['info']}>Escolha um novo apelido!</h2>
+                <h2 className={styles['info']}>Escolha um novo nome!</h2>
 
-                <label htmlFor='nickname'>Apelido</label>
-                <input type='text' id='nickname' {...register('nickname')} />
-                <p className={styles['erro']}>{errors.nickname?.message}</p>
+                <label htmlFor='name'>Nome</label>
+                <input type='text' id='name' {...register('name')} />
+                <p className={styles['erro']}>{errors.name?.message}</p>
 
                 <button className={styles['botao']}>Enviar</button>
             </form>
 
-            <p className={styles['sucesso']} style={{display : ok ? '' : 'none' }}>{msg}</p>
-
-            <p className={styles['erro']} style={{display : ok ? 'none' : '' }}>{msg}</p>
         </main>
     )
 }

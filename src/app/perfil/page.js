@@ -8,7 +8,6 @@ import {useRouter} from 'next/navigation'
 import useStorage from '../hooks/useStorage';
 
 export default function Session () {
-    const [msg, setMsg] = useState('');
     const [validado, setValidado] = useState(false);
 
     const { getItem } = useStorage();
@@ -16,9 +15,6 @@ export default function Session () {
     const router = useRouter();
 
     const user = getItem('user');
-    if(user){
-        const nomeUsuario = JSON.parse(user).name;
-    }
 
     useEffect(() => {
         const cookies = parseCookies(null);
@@ -35,24 +31,21 @@ export default function Session () {
             }
         }
 
-        validaSessao(cookies['access_token']);
+        validaSessao('Bearer ' + cookies['access_token']);
     }, []);
 
-    if(validado){
         return (
             <main>
                 <div className={styles['menu']}>
-                    <h2>Olá, {nomeUsuario}!</h2>
+                    <h2>Olá, {JSON.parse(user).name}!</h2>
 
-                    <button className={styles['opcao']}>Trocar senha</button>
+                    <button className={styles['opcao']}><a href='http://localhost:3000/perfil/lost-account'>Trocar senha</a></button>
 
-                    <button className={styles['opcao']}>Trocar nickname</button>
+                    <button className={styles['opcao']}><a href='http://localhost:3000/perfil/change-nick'>Trocar nickname</a></button>
 
-                    <button className={styles['opcao']}>Remover conta</button>
+                    <button className={styles['opcao']}> <a href='http://localhost:3000/perfil/remove-account'>Remover conta</a></button>
                 </div>
             </main>
         )
-    }else{
-        router.push('/login');
-    }
+
 }

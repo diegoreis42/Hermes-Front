@@ -2,11 +2,13 @@
 
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import axios, * as others from 'axios'
-import Link from 'next/link'
+import axios from 'axios'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import styles from './page.module.css'
+import { ApiConnection } from '../../../../enums'
+import useStorage from '../../hooks/useStorage';
+import { useRouter } from 'next/navigation'
 
 export default function LostAccount () {
     const schema = yup.object({
@@ -14,9 +16,13 @@ export default function LostAccount () {
         password: yup.string().min(4, 'A senha é insegura.').required('Uma senha precisa ser informada.')
     });
 
+    const { getItem } = useStorage();
+
+    const user = getItem('user');
     const [msg, setMsg] = useState('');
     const [ok, setOk] = useState(false);
 
+    const router = useRouter();
     const form = useForm({
         resolver: yupResolver(schema)
     });
@@ -27,17 +33,14 @@ export default function LostAccount () {
 
     const submit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3001/remove-account', data);
+            const response = await axios.post(ApiConnection.PATH_AUTH + `/${JSON.parse(user).id}`, {password: data.password});
 
             if(response.status === 200){
-                setMsg(response.data);
                 
-                setOk(true);
+                router.push('/')
             }
         } catch (error) {
-            setMsg(error.response.data);
-
-            setOk(false);
+            console.log(error)
         }
     }
     
@@ -46,20 +49,12 @@ export default function LostAccount () {
             <form onSubmit={handleSubmit(submit)} noValidate className={styles['remover-conta']}>
                 <h2 className={styles['info']}>Apague sua conta!</h2>
 
-                <label htmlFor='email'>E-mail</label>
-                <input type='text' id='email' {...register('email')} />
-                <p className={styles['erro']}>{errors.email?.message}</p>
-
                 <label htmlFor='password'>Senha</label>
                 <input type='password' id='password' {...register('password')} />
                 <p className={styles['erro']}>{errors.password?.message}</p>
 
                 <button className={styles['botao']}>Enviar</button>
             </form>
-
-            <p className={styles['sucesso']} style={{display : ok ? '' : 'none' }}>{msg}</p>
-
-            <p className={styles['erro']} style={{display : ok ? 'none' : '' }}>{msg}</p>
         </main>
     )
 }

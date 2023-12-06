@@ -2,13 +2,16 @@
 
 import {useState} from 'react'
 import {useForm} from 'react-hook-form'
-import axios, * as others from 'axios'
+import axios from 'axios'
 import Link from 'next/link'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import {useRouter} from 'next/navigation'
 import styles from './page.module.css'
 import {setCookie} from 'nookies'
+import { ApiConnection, CookiesAttributes } from '../../../enums'
+import useStorage from '../hooks/useStorage';
+
 
 export default function Login () {
     const schema = yup.object({
@@ -18,6 +21,7 @@ export default function Login () {
 
     const [msg, setMsg] = useState('');
     const [esqueceu, setEsqueceu] = useState(false);
+    const { setItem } = useStorage();
 
     const form = useForm({
         resolver: yupResolver(schema)
@@ -31,18 +35,22 @@ export default function Login () {
 
     const submit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3001/login', data);
+            const response = await axios.post(ApiConnection.PATH_LOGIN, data);
             
             if(response.status === 200){
-                const token = response.data.token; // extrai o token
+                const token = response.data.access_token; 
 
-                setCookie(null, 'access_token', `Bearer ${token}`);
+                setCookie(null, CookiesAttributes.ACCESS_TOKEN, `Bearer ${token}`);
 
-                setMsg(response.data.feedback); // imprime o feedback
+                setMsg(response.data.feedback); 
 
                 setEsqueceu(false);
             
                 if(token){
+                    
+                    const payload = await axios.get(ApiConnection.PATH_ME, { headers: { Authorization: `Bearer ${token}` } })
+                    setItem('user', JSON.stringify(payload.data))
+
                     router.push('/chat');
                 }
             }

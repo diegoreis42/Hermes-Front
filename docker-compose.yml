@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  api:
+    image: muaddib42/hermes-api
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"

@@ -1,4 +1,74 @@
+/*https://paletadecores.com/paleta/44749d/c6d4e1/ffffff/ebe7e0/bdb8ad/*/
+
+/*https://paletadecores.com/paleta/48586f/ffffc0/d6c496/d62e2e/283d3e/*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body{
+  margin: 0;
+  background-color: white;
+}
+
+main, footer{
+  display: flex;
+  color: black;
+}
+
+header{ /*o header ficará colado ao topo da tela*/
+  position: fixed;
+  min-width: 100vw;
+  top: 0;
+}
+
+header, footer{
+  background-color: #c6d4e1;
+  color: #44749d; /*cor do texto*/
+  z-index: 1;
+}
+
+main{
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 64px; /*compensa o header*/
+}
+
+footer{ /*o footer aparecerá somente ao descer a tela*/
+  justify-content: center;
+  margin-top: auto;
+}
+
+ul{
+  list-style: none;
+}
+
+label{
+  margin-top: 16px;
+}
+
+input{
+  margin-bottom: 16px;
+  border-radius: 10px;
+}
+
+button{
+  transition: background-color 200ms;
+  border-radius: 10px;
+  background-color: #283d3e;
+  padding: 4px 8px;
+  margin-top: 16px;
+}
+
+button:hover{
+  background-color: #48586f;
+}
+
+input{
+  transition: background-color 200ms;
+  background-color: #c6d4e1;
+}
+
+input:hover{
+  background-color: #44749d;
+}

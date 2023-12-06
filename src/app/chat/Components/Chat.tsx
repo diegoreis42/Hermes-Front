@@ -1,7 +1,6 @@
-'use client'
-
-import { parseCookies } from 'nookies';
+"use client"
 import React, { useEffect, useState } from 'react';
+import { parseCookies } from 'nookies';
 import { io, Socket } from 'socket.io-client';
 import { ApiConnection } from '../../../../enums';
 import useStorage from '../../hooks/useStorage';
@@ -9,14 +8,14 @@ import useStorage from '../../hooks/useStorage';
 interface Message {
   user: string;
   content: string;
+  userId: string;
 }
 
 interface ChatProps { }
 
-const Chat: React.FC<ChatProps> =  () => {
+const Chat: React.FC<ChatProps> = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [messageInput, setMessageInput] = useState<string>('');
-  const [username, setUsername] = useState<string>('');
   const [socket, setSocket] = useState<Socket | null>(null);
   const cookies = parseCookies(null);
   const { getItem } = useStorage();
@@ -29,7 +28,6 @@ const Chat: React.FC<ChatProps> =  () => {
         Authorization: cookies['access_token']
       }
     });
-
 
     socketInstance.on('connect', () => {
       console.log('Socket.IO connected');
@@ -55,43 +53,52 @@ const Chat: React.FC<ChatProps> =  () => {
     if (socket && messageInput.trim() !== '') {
       const newMessage: Message = {
         user: JSON.parse(user).name,
-        content: messageInput,
+        userId: JSON.parse(user).id,
+        content: messageInput
       };
 
       socket.emit('message', newMessage);
 
-        setMessages(messages => [...messages, newMessage]);
+      setMessages((messages) => [...messages, newMessage]);
 
       setMessageInput('');
     }
   };
 
   return (
-    <div>
-      <div>
-        <h2>Bem-vind@, {JSON.parse(user).name}, ao Hermes Chat!</h2>
-        <input
-          type="text"
-          placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div style={{ height: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px' }}>
-        {messages.map((msg, index) => (
-          <div key={index}>
-            <strong>{msg.user}:</strong> {msg.content}
+    <div className="flex h-screen py-16">
+      <div className="flex-1 flex flex-col bg-gray-100">
+        <div className="p-4 bg-gray-200 border-b">
+          <h2 className="text-xl">Bem-vinde <strong>{JSON.parse(user).name}</strong> ao Hermes chat!</h2>
+        </div>
+        <div className="flex-1 p-4 overflow-y-auto">
+          <div className="flex flex-col mb-2 space-y-2">
+            {messages.map((msg, index) => (
+              <div className={msg.userId === JSON.parse(user).id ? "flex flex-row-reverse" : "flex flex-row"}>
+                <div key={index} className={msg.userId === JSON.parse(user).id ? "flex-row-reverse bg-green-300 text-black p-2 rounded-lg max-w-xs justify-end items-start" : "bg-blue-300 text-black p-2 rounded-lg max-w-xs flex justify-start items-start"}>
+                  <strong>{msg.user}:</strong> {msg.content}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div>
-        <input
-          type="text"
-          value={messageInput}
-          onChange={(e) => setMessageInput(e.target.value)}
-          placeholder="Type your message..."
-        />
-        <button onClick={sendMessage}>Send</button>
+        </div>
+        <div className="p-2 border-t">
+          <div className="flex items-start space-x-2">
+            <input
+              className="flex-1 border border-gray-300 p-2 rounded-l"
+              type="text"
+              value={messageInput}
+              onChange={(e) => setMessageInput(e.target.value)}
+              placeholder="Digite sua mensagem..."
+            />
+            <button
+              className="bg-green-400 text-white px-4 py-2 mt-0 rounded-r"
+              onClick={sendMessage}
+            >
+              Send
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

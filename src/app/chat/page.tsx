@@ -1,4 +1,4 @@
-import Chat from '@/app/chat/Components/Chat'
+import Chat from './Components/Chat';
 
 
 const ChatPage = () => {
